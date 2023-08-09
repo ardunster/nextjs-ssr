@@ -1,3 +1,3 @@
-export default function ArticleBySlug(){
+export default function ArticleBySlug() {
   return <>Article By Slug Placeholder</>
 }

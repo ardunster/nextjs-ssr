@@ -11,10 +11,10 @@ const config: Config = {
   // Add more setup options before each test is run
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   testEnvironment: 'jest-environment-jsdom',
-  transformIgnorePatterns: ['node_modules/(?!(react-markdown)/)'],
+  // transformIgnorePatterns: ['node_modules/(?!(.*(mdx).*)/?)'],
   moduleNameMapper: {
-    'react-markdown':
-      '<rootDir>/node_modules/react-markdown/react-markdown.min.js',
+    '^[./a-zA-Z0-9$_-]+\.md(x)?$':
+      '<rootDir>/src/testutils/GlobalMarkdownError.ts',
   },
 }
 

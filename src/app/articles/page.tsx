@@ -1,12 +1,10 @@
-import ReactMarkdown from 'react-markdown'
-
-const markdown = `Test Markdown`
+import Markdown from '../../data/test.md'
 
 export default function Articles() {
   return (
     <>
       <h1>Articles</h1>
-      <ReactMarkdown>{markdown}</ReactMarkdown>
+      <Markdown />
     </>
   )
 }

@@ -13,8 +13,9 @@ const config: Config = {
   testEnvironment: 'jest-environment-jsdom',
   transformIgnorePatterns: ['node_modules/(?!(react-markdown)/)'],
   moduleNameMapper: {
-    "react-markdown": "<rootDir>/node_modules/react-markdown/react-markdown.min.js"
-  }
+    'react-markdown':
+      '<rootDir>/node_modules/react-markdown/react-markdown.min.js',
+  },
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

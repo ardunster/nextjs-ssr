@@ -1,6 +1,13 @@
 import Articles from '@/app/articles/page'
 import { render, screen } from '@testing-library/react'
 
+jest.mock('../../data/test.md', () => {
+  const Mock = () => {
+    return <>Mocked here</>
+  }
+  return Mock
+})
+
 describe('Articles', () => {
   test('exists', () => {
     expect(Articles).toBeDefined()
@@ -13,6 +20,6 @@ describe('Articles', () => {
 
   test('shows imported markdown', () => {
     render(<Articles />)
-    expect(screen.getByText('Imported Markdown Content')).toBeInTheDocument()
+    expect(screen.getByText('Mocked here')).toBeInTheDocument()
   })
 })

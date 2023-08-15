@@ -14,7 +14,7 @@ const config: Config = {
   // transformIgnorePatterns: ['node_modules/(?!(.*(mdx).*)/?)'],
   moduleNameMapper: {
     '^[./a-zA-Z0-9$_-]+\.md(x)?$':
-      '<rootDir>/src/testutils/GlobalMarkdownError.ts',
+      '<rootDir>/src/testutils/GlobalMarkdownImport.tsx',
   },
 }
 

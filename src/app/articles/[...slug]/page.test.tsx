@@ -1,4 +1,4 @@
-import ArticleBySlug from '@/app/articles/[slug]/page'
+import ArticleBySlug from '@/app/articles/[...slug]/page'
 
 describe('ArticleBySlug', () => {
   test('exists', () => {

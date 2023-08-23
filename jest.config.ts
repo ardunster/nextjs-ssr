@@ -13,8 +13,7 @@ const config: Config = {
   testEnvironment: 'jest-environment-jsdom',
   // transformIgnorePatterns: ['node_modules/(?!(.*(mdx).*)/?)'],
   moduleNameMapper: {
-    '^[./a-zA-Z0-9$_-]+\.md(x)?$':
-      '<rootDir>/src/testutils/GlobalMarkdownImport.tsx',
+    '^[./a-zA-Z0-9$_-]+\.md(x)?$': '<rootDir>/src/app/_testutils/GlobalMarkdownImport.tsx',
   },
 }
 

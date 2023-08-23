@@ -1,7 +1,7 @@
 import Articles from '@/app/articles/page'
 import { render, screen } from '@testing-library/react'
 
-jest.mock('../../data/test.md', () => {
+jest.mock('../../assets/test.md', () => {
   const Mock = () => {
     return <>Mocked here</>
   }

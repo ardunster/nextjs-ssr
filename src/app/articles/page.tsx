@@ -1,4 +1,4 @@
-import Markdown from '../../data/test.md'
+import Markdown from '@/assets/test.md'
 
 export default function Articles() {
   return (

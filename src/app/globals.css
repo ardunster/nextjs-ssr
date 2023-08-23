@@ -105,3 +105,18 @@ a {
     color-scheme: dark;
   }
 }
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  border-bottom: white solid 2px;
+  margin-bottom: 1em;
+
+  & a {
+    flex: auto;
+    height: 100%;
+    margin-block: auto;
+    padding-block: .25em;
+    padding-inline: 1em;
+  }
+}

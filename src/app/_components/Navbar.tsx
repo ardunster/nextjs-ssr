@@ -2,12 +2,12 @@ import Link from 'next/link'
 
 function Navbar() {
   return (
-    <nav>
+    <nav className={'navbar'}>
       <Link href="/" passHref>
         <h2>Main Page</h2>
       </Link>
       <Link href="/articles" passHref>
-        <p>Articles</p>
+        <h3>Articles</h3>
       </Link>
     </nav>
   )

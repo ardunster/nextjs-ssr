@@ -1,6 +1,2 @@
 node_modules
 .next
-
-# Prettier wants to remove the escaping slash in the module name mapper string that gets converted to regex,
-# so we're ignoring the jest config file so it doesn't get broken.
-jest.config.ts

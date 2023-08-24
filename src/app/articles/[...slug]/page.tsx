@@ -1,4 +1,4 @@
-import { getFilenames } from '@/app/_utils/getArticles'
+import { getArticle, getFilenames } from '@/app/_utils/getArticles'
 
 export async function generateStaticParams() {
   const filenames = getFilenames('articles')
@@ -13,17 +13,28 @@ export async function generateStaticParams() {
   return paths
 }
 
-export default function ArticleBySlug({
+export default async function ArticleBySlug({
   params,
 }: {
   params: { slug: string[] }
 }) {
   console.log(params.slug)
 
+  const articleData = await getArticle('articles', params.slug[0])
+
+  console.log(articleData)
+
   return (
     <>
       <h1>Article By Slug Placeholder</h1>
       Entered slug: {params.slug}
+      {/*<MDXRemote*/}
+      {/*  {...articleData.mdxSource}*/}
+      {/*  // components={{ Button, SyntaxHighlighter }}*/}
+      {/*/>*/}
+      <br />
+      <h2>Markdown contents:</h2>
+      {articleData.content}
     </>
   )
 }

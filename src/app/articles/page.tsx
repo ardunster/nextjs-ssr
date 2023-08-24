@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { getArticles } from '@/app/_utils/getArticles'
 
 export default async function Articles() {
-  const articles = await getArticles('articles')
+  const articles = getArticles('articles')
 
   console.log(articles)
 

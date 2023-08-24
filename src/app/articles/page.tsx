@@ -12,7 +12,7 @@ export default async function Articles() {
       <h1>Articles</h1>
 
       {articles.map((post, index) => (
-        <Link href={'/blog/' + post.slug} passHref key={index}>
+        <Link href={'/articles/' + post.slug} passHref key={index}>
           <div className="card mb-3 pointer" style={{ maxWidth: '540px' }}>
             <div className="row g-0">
               <div className="col-md-8">

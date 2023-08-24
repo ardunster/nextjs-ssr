@@ -2,7 +2,7 @@
 title: Newer Test Article
 date: 'October 25, 2011'
 description: Some random stuff to verify loading article pages
-thumbnailUrl: '/maple-tree-8010467_640.jpg'
+thumbnailUrl: 'maple-tree-8010467_640.jpg'
 tags: ['test', 'article']
 ---
 

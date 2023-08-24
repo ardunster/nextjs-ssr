@@ -2,7 +2,7 @@
 title: Older Test Article
 date: 'April 10, 1997'
 description: This article is much older
-thumbnailUrl: '/trail-8117575_1280.jpg'
+thumbnailUrl: 'trail-8117575_1280.jpg'
 tags: ['test', 'article', 'old']
 ---
 

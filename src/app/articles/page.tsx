@@ -2,6 +2,7 @@ import path from 'path'
 import fs from 'fs'
 import matter from 'gray-matter'
 import Link from 'next/link'
+import Image from 'next/image'
 
 // Your markdown folder for posts.
 const root = process.cwd()
@@ -69,14 +70,13 @@ export default async function Articles() {
                 </div>
               </div>
               <div className="col-md-4 m-auto">
-                {/*<Image*/}
-                {/*  src={post.frontMatter.thumbnailUrl}*/}
-                {/*  className="img-fluid mt-1 rounded-start"*/}
-                {/*  alt="thumbnail"*/}
-                {/*  width={500}*/}
-                {/*  height={400}*/}
-                {/*  objectFit="cover"*/}
-                {/*/>*/}
+                <Image
+                  src={`/images/${post.frontMatter.thumbnailUrl}`}
+                  alt="thumbnail"
+                  width={500}
+                  height={400}
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
             </div>
           </div>

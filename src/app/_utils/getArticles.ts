@@ -43,7 +43,7 @@ export function getArticles(subdirectory: Subdirectory) {
   const postsDirectory = getPostsDirectory(subdirectory)
   const filenames = getFilenames(subdirectory)
   console.log('filenames', filenames)
-  return filenames.map((filename) => {
+  const articleData = filenames.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
       path.join(postsDirectory, filename),
       'utf-8',
@@ -54,6 +54,12 @@ export function getArticles(subdirectory: Subdirectory) {
       slug: filename.split('.')[0],
     }
   })
+  articleData.sort((article1, article2) => {
+    const date1 = new Date(article1.data.date).getTime()
+    const date2 = new Date(article2.data.date).getTime()
+    return date2 - date1
+  })
+  return articleData
 }
 
 export async function getArticle(subdirectory: Subdirectory, slug: string) {

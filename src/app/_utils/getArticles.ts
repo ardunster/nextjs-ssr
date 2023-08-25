@@ -57,6 +57,7 @@ export function getArticles(subdirectory: Subdirectory) {
 }
 
 export async function getArticle(subdirectory: Subdirectory, slug: string) {
+  console.log('getArticle slug', slug)
   const markdownWithMeta = fs.readFileSync(
     path.join(getPostsDirectory(subdirectory), slug + '.md'),
     'utf-8',

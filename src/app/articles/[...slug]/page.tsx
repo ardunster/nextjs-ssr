@@ -3,6 +3,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import Button from '@/app/_components/client/Button'
 import SyntaxHighlighterWrapper from '@/app/_components/client/SyntaxHighlighterWrapper'
 import Image from 'next/image'
+import path from 'path'
 
 export async function generateStaticParams() {
   const filenames = getFilenames('articles')
@@ -22,15 +23,13 @@ export default async function ArticleBySlug({
 }: {
   params: { slug: string[] }
 }) {
-  console.log(params.slug)
+  const slug = path.join(...params.slug)
 
-  const articleData = await getArticle('articles', params.slug[0])
-
-  console.log(articleData)
+  const articleData = await getArticle('articles', slug)
 
   return (
     <>
-      <aside>Entered slug: {params.slug}</aside>
+      <aside>Computed slug: {slug}</aside>
       <h1>{articleData.frontMatter.title}</h1>
       <em>Created: {articleData.frontMatter.date}</em>
       <br />

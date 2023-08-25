@@ -1,7 +1,11 @@
-import { ReactNode } from 'react'
+'use client'
 
-export default function SyntaxHighlighterWrapper(props: {
-  children: ReactNode
-}) {
-  return <div>{props.children}</div>
+import SyntaxHighlighter, {
+  SyntaxHighlighterProps,
+} from 'react-syntax-highlighter'
+
+export default function SyntaxHighlighterWrapper(
+  props: SyntaxHighlighterProps,
+) {
+  return <SyntaxHighlighter props={props}>{props.children}</SyntaxHighlighter>
 }

@@ -37,7 +37,6 @@ export default async function ArticleBySlug({
         source={articleData.content}
         components={{ Button, SyntaxHighlighter: SyntaxHighlighterWrapper }}
       />
-      {/*{articleData.content}*/}
     </>
   )
 }

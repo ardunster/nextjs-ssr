@@ -7,8 +7,9 @@ import Navbar from '@/app/_components/Navbar'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'NextJS with Markdown',
-  description: 'A NextJS app using Markdown/MDX to display blog content',
+  title: 'NextJS Blog with Markdown via MDX',
+  description:
+    'A NextJS app using Markdown/MDX to dynamically display blog content',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {

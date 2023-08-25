@@ -1,7 +1,6 @@
 import path from 'path'
 import fs from 'fs'
 import matter from 'gray-matter'
-import { serialize } from 'next-mdx-remote/serialize'
 
 type Subdirectory = 'articles'
 
@@ -12,12 +11,18 @@ function getPostsDirectory(subdirectory: Subdirectory) {
 
 export function getFilenames(subdirectory: Subdirectory) {
   const postsDirectory = getPostsDirectory(subdirectory)
-  return fs.readdirSync(path.join(postsDirectory))
+  const filenames = fs.readdirSync(path.join(postsDirectory), {
+    withFileTypes: true,
+  })
+  return filenames
+    .filter((item) => !item.isDirectory())
+    .map((item) => item.name)
 }
 
 export function getArticles(subdirectory: Subdirectory) {
   const postsDirectory = getPostsDirectory(subdirectory)
   const filenames = getFilenames(subdirectory)
+  console.log('filenames', filenames)
   return filenames.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
       path.join(postsDirectory, filename),
@@ -37,7 +42,6 @@ export async function getArticle(subdirectory: Subdirectory, slug: string) {
     'utf-8',
   )
   const { data: frontMatter, content } = matter(markdownWithMeta)
-  const mdxSource = await serialize(content)
   return {
     frontMatter,
     slug,

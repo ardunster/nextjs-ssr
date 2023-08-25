@@ -23,7 +23,7 @@ function recurseFilenamesInSubdirectory(
     if (file.isDirectory()) {
       filenames = recurseFilenamesInSubdirectory(
         directory + '/' + file.name,
-        file.name,
+        path.join(subdirectory, file.name),
         filenames,
       )
     } else {

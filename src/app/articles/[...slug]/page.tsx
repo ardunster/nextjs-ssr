@@ -29,10 +29,9 @@ export default async function ArticleBySlug({
 
   return (
     <>
-      <h1>Article By Slug Placeholder</h1>
-      Entered slug: {params.slug}
+      <aside>Entered slug: {params.slug}</aside>
+      <h1>{articleData.frontMatter.title}</h1>
       <br />
-      <h2>Markdown contents:</h2>
       <MDXRemote
         source={articleData.content}
         components={{ Button, SyntaxHighlighter: SyntaxHighlighterWrapper }}

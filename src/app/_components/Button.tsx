@@ -1,12 +1,8 @@
-import { useState } from 'react'
+'use client'
 
-function Button(inputText: string) {
-  const [buttonText, setButtonText] = useState(inputText)
-
+function Button(props: { inputText: string }) {
   return (
-    <button onClick={() => setButtonText('You clicked me!')}>
-      {buttonText}
-    </button>
+    <button onClick={() => alert('You clicked me!')}>{props.inputText}</button>
   )
 }
 export default Button

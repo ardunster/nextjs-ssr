@@ -25,4 +25,4 @@ This text appears under a `##` tag in the markdown.
   `}
 </SyntaxHighlighter>
 
-Use a component inside a MarkDown file: {<Button text={"Click me"}/>}
+Use a component inside a MarkDown file: {<Button inputText={"Click me"}/>}

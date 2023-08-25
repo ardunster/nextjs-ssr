@@ -1,4 +1,7 @@
 import { getArticle, getFilenames } from '@/app/_utils/getArticles'
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import Button from '@/app/_components/Button'
+import SyntaxHighlighterWrapper from '@/app/_components/SyntaxHighlighterWrapper'
 
 export async function generateStaticParams() {
   const filenames = getFilenames('articles')
@@ -28,13 +31,13 @@ export default async function ArticleBySlug({
     <>
       <h1>Article By Slug Placeholder</h1>
       Entered slug: {params.slug}
-      {/*<MDXRemote*/}
-      {/*  {...articleData.mdxSource}*/}
-      {/*  // components={{ Button, SyntaxHighlighter }}*/}
-      {/*/>*/}
       <br />
       <h2>Markdown contents:</h2>
-      {articleData.content}
+      <MDXRemote
+        source={articleData.content}
+        components={{ Button, SyntaxHighlighter: SyntaxHighlighterWrapper }}
+      />
+      {/*{articleData.content}*/}
     </>
   )
 }

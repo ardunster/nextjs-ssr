@@ -25,30 +25,30 @@ export default async function ArticleBySlug({
 }) {
   const slug = path.join(...params.slug)
 
-  const articleData = await getArticle('articles', slug)
+  const article = await getArticle('articles', slug)
 
   return (
     <>
       <aside>Computed slug: {slug}</aside>
-      <h1>{articleData.frontMatter.title}</h1>
-      <em>Created: {articleData.frontMatter.date}</em>
+      <h1>{article.data.title}</h1>
+      <em>Created: {article.data.date}</em>
       <br />
-      {articleData.frontMatter.modified != undefined && (
+      {article.data.modified != undefined && (
         <>
-          <em>Modified: {articleData.frontMatter.modified}</em>
+          <em>Modified: {article.data.modified}</em>
           <br />
         </>
       )}
       <br />
       <Image
-        src={`/images/${articleData.frontMatter.thumbnailUrl}`}
+        src={`/images/${article.data.thumbnailUrl}`}
         alt="thumbnail"
         width={640}
         height={200}
         style={{ objectFit: 'cover' }}
       />
       <MDXRemote
-        source={articleData.content}
+        source={article.content}
         components={{ Button, SyntaxHighlighter: SyntaxHighlighterWrapper }}
       />
     </>

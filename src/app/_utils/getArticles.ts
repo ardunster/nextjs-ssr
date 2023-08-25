@@ -48,9 +48,9 @@ export function getArticles(subdirectory: Subdirectory) {
       path.join(postsDirectory, filename),
       'utf-8',
     )
-    const { data: frontMatter } = matter(markdownWithMeta)
+    const { data } = matter(markdownWithMeta)
     return {
-      frontMatter,
+      data,
       slug: filename.split('.')[0],
     }
   })
@@ -62,10 +62,6 @@ export async function getArticle(subdirectory: Subdirectory, slug: string) {
     path.join(getPostsDirectory(subdirectory), slug + '.md'),
     'utf-8',
   )
-  const { data: frontMatter, content } = matter(markdownWithMeta)
-  return {
-    frontMatter,
-    slug,
-    content,
-  }
+  // TODO: make it work with .mdx extension too, dynamically
+  return matter(markdownWithMeta)
 }

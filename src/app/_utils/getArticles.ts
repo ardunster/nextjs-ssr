@@ -22,7 +22,7 @@ function recurseFilenamesInSubdirectory(
   files.forEach((file) => {
     if (file.isDirectory()) {
       filenames = recurseFilenamesInSubdirectory(
-        directory + '/' + file.name,
+        path.join(directory, file.name),
         path.join(subdirectory, file.name),
         filenames,
       )

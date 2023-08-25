@@ -2,6 +2,7 @@ import path from 'path'
 import fs from 'fs'
 import matter from 'gray-matter'
 
+/** Available post paths in file system and navigation. Add additional post paths here. */
 type Subdirectory = 'articles'
 
 function getPostsDirectory(subdirectory: Subdirectory) {
@@ -9,14 +10,33 @@ function getPostsDirectory(subdirectory: Subdirectory) {
   return path.join(root, `src/assets/${subdirectory}`)
 }
 
-export function getFilenames(subdirectory: Subdirectory) {
-  const postsDirectory = getPostsDirectory(subdirectory)
-  const filenames = fs.readdirSync(path.join(postsDirectory), {
+function recurseFilenamesInSubdirectory(
+  directory: string,
+  subdirectory: string,
+  filenames: string[],
+) {
+  const files = fs.readdirSync(path.join(directory), {
     withFileTypes: true,
   })
+
+  files.forEach((file) => {
+    if (file.isDirectory()) {
+      filenames = recurseFilenamesInSubdirectory(
+        directory + '/' + file.name,
+        file.name,
+        filenames,
+      )
+    } else {
+      filenames.push(path.join(subdirectory, file.name))
+    }
+  })
+
   return filenames
-    .filter((item) => !item.isDirectory())
-    .map((item) => item.name)
+}
+
+export function getFilenames(subdirectory: Subdirectory) {
+  const postsDirectory = getPostsDirectory(subdirectory)
+  return recurseFilenamesInSubdirectory(path.join(postsDirectory), '', [])
 }
 
 export function getArticles(subdirectory: Subdirectory) {

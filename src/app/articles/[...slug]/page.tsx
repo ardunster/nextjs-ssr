@@ -1,7 +1,7 @@
 import { getArticle, getFilenames } from '@/app/_utils/getArticles'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import Button from '@/app/_components/Button'
-import SyntaxHighlighterWrapper from '@/app/_components/SyntaxHighlighterWrapper'
+import Button from '@/app/_components/client/Button'
+import SyntaxHighlighterWrapper from '@/app/_components/client/SyntaxHighlighterWrapper'
 
 export async function generateStaticParams() {
   const filenames = getFilenames('articles')

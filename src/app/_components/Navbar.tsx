@@ -9,6 +9,9 @@ function Navbar() {
       <NavbarTab route={'/articles'} isEmphasizedRoute={false}>
         Articles
       </NavbarTab>
+      <NavbarTab route={'/tags'} isEmphasizedRoute={false}>
+        Tags
+      </NavbarTab>
     </nav>
   )
 }

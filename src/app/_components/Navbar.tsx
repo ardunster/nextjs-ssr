@@ -1,14 +1,14 @@
-import Link from 'next/link'
+import { NavbarTab } from '@/app/_components/client/NavbarTab'
 
 function Navbar() {
   return (
     <nav className={'navbar'}>
-      <Link href={'/'}>
-        <h2>Main Page</h2>
-      </Link>
-      <Link href={'/articles'}>
-        <h3>Articles</h3>
-      </Link>
+      <NavbarTab route={'/'} isEmphasizedRoute={true}>
+        Main Page
+      </NavbarTab>
+      <NavbarTab route={'/articles'} isEmphasizedRoute={false}>
+        Articles
+      </NavbarTab>
     </nav>
   )
 }

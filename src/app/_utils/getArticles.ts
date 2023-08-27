@@ -39,7 +39,13 @@ export function getFilenames(subdirectory: Subdirectory) {
   return recurseFilenamesInSubdirectory(path.join(postsDirectory), '', [])
 }
 
-export function getArticles(subdirectory: Subdirectory) {
+export interface ArticleData {
+  [key: string]: any
+}
+
+export function getArticles(
+  subdirectory: Subdirectory,
+): { data: ArticleData; slug: string }[] {
   const postsDirectory = getPostsDirectory(subdirectory)
   const filenames = getFilenames(subdirectory)
   console.log('filenames', filenames)

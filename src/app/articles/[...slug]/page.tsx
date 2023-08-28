@@ -29,7 +29,7 @@ export default async function ArticleBySlug({
 
   return (
     <>
-      <aside>Computed slug: {slug}</aside>
+      <aside>Breadcrumb: articles/{slug}</aside>
       <h1>{article.data.title}</h1>
       <em>Created: {article.data.date}</em>
       <br />

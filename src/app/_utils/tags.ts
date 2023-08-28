@@ -1,14 +1,17 @@
-import { ArticleData } from '@/app/_utils/getArticles'
+import { Article } from '@/app/_utils/getArticles'
 
 export type TagCount = { tag: string; count: number }
 
-export function aggregateTags(articles: { data: ArticleData; slug: string }[]) {
+export function aggregateTags(articles: Article[]) {
   const tags: TagCount[] = []
 
   for (const article of articles) {
     if (article.data.tags && article.data.tags.length > 0) {
+      updateTagCounts(tags, article.data.tags)
     }
   }
+
+  return tags.sort(sortTagCounts)
 }
 
 export function updateTagCounts(tags: TagCount[], newTags: string[]) {
@@ -22,6 +25,7 @@ export function updateTagCounts(tags: TagCount[], newTags: string[]) {
   }
 }
 
+/** Sorts descending with highest quantity first. */
 export function sortTagCounts(tagA: TagCount, tagB: TagCount): number {
-  return tagA.count - tagB.count
+  return tagB.count - tagA.count
 }

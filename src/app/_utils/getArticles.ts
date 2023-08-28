@@ -43,9 +43,12 @@ export interface ArticleData {
   [key: string]: any
 }
 
-export function getArticles(
-  subdirectory: Subdirectory,
-): { data: ArticleData; slug: string }[] {
+export interface Article {
+  data: ArticleData
+  slug: string
+}
+
+export function getArticles(subdirectory: Subdirectory): Article[] {
   const postsDirectory = getPostsDirectory(subdirectory)
   const filenames = getFilenames(subdirectory)
   console.log('filenames', filenames)

@@ -1,11 +1,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArticleData } from '@/app/_utils/getArticles'
+import { Article } from '@/app/_utils/getArticles'
 
-export function ArticleCard(props: {
-  article: { slug: string; data: ArticleData }
-  index: number
-}) {
+export function ArticleCard(props: { article: Article; index: number }) {
   const { article, index } = props
   return (
     <Link href={'/articles/' + article.slug} passHref key={index}>

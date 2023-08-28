@@ -5,7 +5,7 @@ import { Article } from '@/app/_utils/getArticles'
 export function ArticleCard(props: { article: Article; index: number }) {
   const { article, index } = props
   return (
-    <Link href={'/articles/' + article.slug} passHref key={index}>
+    <Link href={'/articles/' + article.slug} key={index}>
       <div className="card mb-3 pointer" style={{ maxWidth: '540px' }}>
         <div className="row g-0">
           <div className="col-md-8">

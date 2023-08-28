@@ -1,11 +1,18 @@
 import { getArticles } from '@/app/_utils/getArticles'
+import { aggregateTags } from '@/app/_utils/tags'
+import { TagCard } from '@/app/_components/TagCard'
 
 export default function Tags() {
   const articles = getArticles('articles')
 
+  const tagCounts = aggregateTags(articles)
+
   return (
     <>
       <h1>Tags</h1>
+      {tagCounts.map((tagCount, index) => (
+        <TagCard tagCount={tagCount} key={index} />
+      ))}
     </>
   )
 }

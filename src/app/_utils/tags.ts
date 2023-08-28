@@ -34,5 +34,7 @@ export function filterArticlesByTag(
   articles: Article[],
   tag: string,
 ): Article[] {
-  return []
+  return articles.filter((article) => {
+    return article.data.tags && article.data.tags.includes(tag)
+  })
 }

@@ -1,9 +1,9 @@
 import { ArticleData } from '@/app/_utils/getArticles'
 
-export type Tags = { [key: string]: number }
+export type TagCount = { tag: string; count: number }
 
 export function aggregateTags(articles: { data: ArticleData; slug: string }[]) {
-  const tags: Tags = {}
+  const tags: TagCount[] = []
 
   for (const article of articles) {
     if (article.data.tags && article.data.tags.length > 0) {
@@ -11,12 +11,13 @@ export function aggregateTags(articles: { data: ArticleData; slug: string }[]) {
   }
 }
 
-export function addTagCounts(tags: Tags, newTags: string[]) {
-  for (const tag of newTags) {
-    if (tags[tag]) {
-      tags[tag] += 1
+export function updateTagCounts(tags: TagCount[], newTags: string[]) {
+  for (const newTag of newTags) {
+    const existingTag = tags.find((tag) => tag.tag === newTag)
+    if (existingTag) {
+      existingTag.count += 1
     } else {
-      tags[tag] = 1
+      tags.push({ tag: newTag, count: 1 })
     }
   }
 }

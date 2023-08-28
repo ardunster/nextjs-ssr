@@ -1,4 +1,4 @@
-import { addTagCounts, aggregateTags, Tags } from '@/app/_utils/tags'
+import { aggregateTags, TagCount, updateTagCounts } from '@/app/_utils/tags'
 
 describe('aggregateTags', () => {
   test('exists', () => {
@@ -6,20 +6,29 @@ describe('aggregateTags', () => {
   })
 })
 
-describe('addTagCounts', () => {
+describe('updateTagCounts', () => {
   test('exists', () => {
-    expect(addTagCounts).toBeDefined()
+    expect(updateTagCounts).toBeDefined()
   })
 
-  test('adds a missing tag to tags object', () => {
-    const tags: Tags = {}
-    addTagCounts(tags, ['steve'])
-    expect(tags).toEqual({ steve: 1 })
+  test('adds a missing tag to tags array', () => {
+    const tags: TagCount[] = []
+    updateTagCounts(tags, ['steve'])
+    expect(tags).toEqual([{ tag: 'steve', count: 1 }])
   })
 
-  test('adds a count of an existing tag to tags object', () => {
-    const tags: Tags = { steve: 1 }
-    addTagCounts(tags, ['steve'])
-    expect(tags).toEqual({ steve: 2 })
+  test('adds a count of an existing tag to tags array', () => {
+    const tags: TagCount[] = [{ tag: 'steve', count: 1 }]
+    updateTagCounts(tags, ['steve'])
+    expect(tags).toEqual([{ tag: 'steve', count: 2 }])
+  })
+
+  test('adds a count of multiple tags to tags array', () => {
+    const tags: TagCount[] = [{ tag: 'steve', count: 1 }]
+    updateTagCounts(tags, ['steve', 'antwerp'])
+    expect(tags).toEqual([
+      { tag: 'steve', count: 2 },
+      { tag: 'antwerp', count: 1 },
+    ])
   })
 })

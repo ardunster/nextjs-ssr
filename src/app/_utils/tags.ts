@@ -21,3 +21,7 @@ export function updateTagCounts(tags: TagCount[], newTags: string[]) {
     }
   }
 }
+
+export function sortTagCounts(tagA: TagCount, tagB: TagCount): number {
+  return tagA.count - tagB.count
+}

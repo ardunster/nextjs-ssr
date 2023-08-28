@@ -1,4 +1,9 @@
-import { aggregateTags, TagCount, updateTagCounts } from '@/app/_utils/tags'
+import {
+  aggregateTags,
+  sortTagCounts,
+  TagCount,
+  updateTagCounts,
+} from '@/app/_utils/tags'
 
 describe('aggregateTags', () => {
   test('exists', () => {
@@ -30,5 +35,32 @@ describe('updateTagCounts', () => {
       { tag: 'steve', count: 2 },
       { tag: 'antwerp', count: 1 },
     ])
+  })
+})
+
+describe('sortTagCounts', () => {
+  test('exists', () => {
+    expect(sortTagCounts).toBeDefined()
+  })
+
+  test('returns negative if count of tag a is less than tag b', () => {
+    const tagA = { tag: 'a', count: 1 }
+    const tagB = { tag: 'b', count: 2 }
+
+    expect(sortTagCounts(tagA, tagB)).toEqual(-1)
+  })
+
+  test('returns positive if count of tag a is greater than tag b', () => {
+    const tagA = { tag: 'a', count: 3 }
+    const tagB = { tag: 'b', count: 2 }
+
+    expect(sortTagCounts(tagA, tagB)).toEqual(1)
+  })
+
+  test('returns neutral if count of tag a is the same as tag b', () => {
+    const tagA = { tag: 'a', count: 2 }
+    const tagB = { tag: 'b', count: 2 }
+
+    expect(sortTagCounts(tagA, tagB)).toEqual(0)
   })
 })

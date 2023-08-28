@@ -6,26 +6,44 @@ export function ArticleCard(props: { article: Article; index: number }) {
   const { article, index } = props
   return (
     <Link href={`/${article.subdirectory}/${article.slug}`} key={index}>
-      <div className="card mb-3 pointer" style={{ maxWidth: '540px' }}>
-        <div className="row g-0">
-          <div className="col-md-8">
-            <div className="card-body">
-              <h5 className="card-title">{article.data.title}</h5>
-              <p className="card-text">{article.data.description}</p>
-              <p className="card-text">
-                <small className="text-muted">{article.data.date}</small>
-              </p>
-            </div>
-          </div>
-          <div className="col-md-4 m-auto">
-            <Image
-              src={`/images/${article.data.thumbnailUrl}`}
-              alt="thumbnail"
-              width={500}
-              height={400}
-              style={{ objectFit: 'cover' }}
-            />
-          </div>
+      <div
+        className="card mb-3 pointer"
+        style={{
+          border: 'gray solid 1px',
+          margin: '1em',
+          padding: '0.75em',
+          display: 'flex',
+          flexDirection: 'row',
+        }}
+      >
+        <div style={{ flex: 'auto' }}>
+          <h3 className="card-title">{article.data.title}</h3>
+          <p className="card-text">{article.data.description}</p>
+          <p className="card-text">
+            <small className="text-muted">{article.data.date}</small>
+          </p>
+          <p>
+            <small>
+              Tags:{' '}
+              {article.data.tags.map((tag: string, index: number) => {
+                return (
+                  <>
+                    {tag}
+                    {index !== article.data.tags.length - 1 && ', '}
+                  </>
+                )
+              })}
+            </small>
+          </p>
+        </div>
+        <div style={{ flex: '0 1 auto' }}>
+          <Image
+            src={`/images/${article.data.thumbnailUrl}`}
+            alt="thumbnail"
+            width={320}
+            height={200}
+            style={{ objectFit: 'cover' }}
+          />
         </div>
       </div>
     </Link>

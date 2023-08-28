@@ -3,7 +3,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 
 /** Available post paths in file system and navigation. Add additional post paths here. */
-type Subdirectory = 'articles'
+export type Subdirectory = 'articles'
 
 function getPostsDirectory(subdirectory: Subdirectory) {
   const root = process.cwd()
@@ -46,29 +46,33 @@ export interface ArticleData {
 export interface Article {
   data: ArticleData
   slug: string
+  subdirectory: Subdirectory
+}
+
+function sortArticlesByDate(article1: Article, article2: Article) {
+  const date1 = new Date(article1.data.date).getTime()
+  const date2 = new Date(article2.data.date).getTime()
+  return date2 - date1
 }
 
 export function getArticles(subdirectory: Subdirectory): Article[] {
   const postsDirectory = getPostsDirectory(subdirectory)
   const filenames = getFilenames(subdirectory)
   console.log('filenames', filenames)
-  const articleData = filenames.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(
-      path.join(postsDirectory, filename),
-      'utf-8',
-    )
-    const { data } = matter(markdownWithMeta)
-    return {
-      data,
-      slug: filename.split('.')[0],
-    }
-  })
-  articleData.sort((article1, article2) => {
-    const date1 = new Date(article1.data.date).getTime()
-    const date2 = new Date(article2.data.date).getTime()
-    return date2 - date1
-  })
-  return articleData
+  return filenames
+    .map((filename) => {
+      const markdownWithMeta = fs.readFileSync(
+        path.join(postsDirectory, filename),
+        'utf-8',
+      )
+      const { data } = matter(markdownWithMeta)
+      return {
+        data,
+        slug: filename.split('.')[0],
+        subdirectory: subdirectory,
+      }
+    })
+    .sort(sortArticlesByDate)
 }
 
 export async function getArticle(subdirectory: Subdirectory, slug: string) {

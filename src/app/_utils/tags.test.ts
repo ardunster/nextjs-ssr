@@ -1,5 +1,6 @@
 import {
   aggregateTags,
+  filterArticlesByTag,
   sortTagCounts,
   TagCount,
   updateTagCounts,
@@ -15,12 +16,14 @@ describe('aggregateTags', () => {
     const articles: Article[] = [
       {
         slug: 'steve',
+        subdirectory: 'articles',
         data: {
           tags: ['yes', 'no', 'maybe'],
         },
       },
       {
         slug: 'antwerp',
+        subdirectory: 'articles',
         data: { tags: ['maybe', 'I dunno', 'can you repeat the question?'] },
       },
     ]
@@ -38,20 +41,24 @@ describe('aggregateTags', () => {
     const articles: Article[] = [
       {
         slug: 'steve',
+        subdirectory: 'articles',
         data: {
           tags: ['yes', 'no', 'maybe'],
         },
       },
       {
         slug: 'antwerp',
+        subdirectory: 'articles',
         data: { tags: ['maybe', 'yes'] },
       },
       {
         slug: 'some-article',
+        subdirectory: 'articles',
         data: { tags: ['maybe', 'no'] },
       },
       {
         slug: 'some-other-article',
+        subdirectory: 'articles',
         data: { tags: ['maybe', '74', 'no'] },
       },
     ]
@@ -116,5 +123,50 @@ describe('sortTagCounts', () => {
     const tagB = { tag: 'b', count: 2 }
 
     expect(sortTagCounts(tagA, tagB)).toEqual(0)
+  })
+})
+
+describe('filterArticlesByTag', () => {
+  const articles: Article[] = [
+    {
+      slug: 'steve',
+      subdirectory: 'articles',
+      data: {
+        tags: ['yes', 'no', 'maybe'],
+      },
+    },
+    {
+      slug: 'antwerp',
+      subdirectory: 'articles',
+      data: { tags: ['maybe', 'yes'] },
+    },
+    {
+      slug: 'some-article',
+      subdirectory: 'articles',
+      data: { tags: ['maybe', 'no'] },
+    },
+    {
+      slug: 'some-other-article',
+      subdirectory: 'articles',
+      data: { tags: ['maybe', '74', 'no'] },
+    },
+  ]
+
+  test('exists', () => {
+    expect(filterArticlesByTag).toBeDefined()
+  })
+
+  test('returns only articles that have the requested tag', () => {
+    expect(filterArticlesByTag(articles, 'yes')).toEqual([
+      articles[0],
+      articles[1],
+    ])
+    expect(filterArticlesByTag(articles, 'no')).toEqual([
+      articles[0],
+      articles[2],
+      articles[3],
+    ])
+    expect(filterArticlesByTag(articles, 'maybe')).toEqual(articles)
+    expect(filterArticlesByTag(articles, 'nope')).toEqual([])
   })
 })

@@ -29,3 +29,10 @@ export function updateTagCounts(tags: TagCount[], newTags: string[]) {
 export function sortTagCounts(tagA: TagCount, tagB: TagCount): number {
   return tagB.count - tagA.count
 }
+
+export function filterArticlesByTag(
+  articles: Article[],
+  tag: string,
+): Article[] {
+  return []
+}

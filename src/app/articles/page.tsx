@@ -11,7 +11,12 @@ export default async function Articles() {
       <h1>Articles</h1>
 
       {articles.map((article, index) => (
-        <ArticleCard article={article} index={index} key={index} />
+        <ArticleCard
+          article={article}
+          index={index}
+          key={index}
+          subdirectory={'articles'}
+        />
       ))}
     </>
   )

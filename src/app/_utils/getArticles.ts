@@ -1,6 +1,7 @@
 import path from 'path'
 import fs from 'fs'
 import matter from 'gray-matter'
+import { globSync } from 'glob'
 
 /** Available post paths in file system and navigation. Add additional post paths here. */
 export type Subdirectory = 'articles'
@@ -56,18 +57,12 @@ function sortArticlesByDate(article1: Article, article2: Article) {
 }
 
 export function getArticles(subdirectory: Subdirectory): Article[] {
-  const postsDirectory = getPostsDirectory(subdirectory)
   const filenames = getFilenames(subdirectory)
-  console.log('filenames', filenames)
   return filenames
     .map((filename) => {
-      const markdownWithMeta = fs.readFileSync(
-        path.join(postsDirectory, filename),
-        'utf-8',
-      )
-      const { data } = matter(markdownWithMeta)
+      const articleData = getArticle(subdirectory, filename)
       return {
-        data,
+        data: articleData.data,
         slug: filename.split('.')[0],
         subdirectory: subdirectory,
       }
@@ -75,12 +70,9 @@ export function getArticles(subdirectory: Subdirectory): Article[] {
     .sort(sortArticlesByDate)
 }
 
-export async function getArticle(subdirectory: Subdirectory, slug: string) {
-  console.log('getArticle slug', slug)
-  const markdownWithMeta = fs.readFileSync(
-    path.join(getPostsDirectory(subdirectory), slug + '.md'),
-    'utf-8',
-  )
-  // TODO: make it work with .mdx extension too, dynamically
+export function getArticle(subdirectory: Subdirectory, slugOrFilename: string) {
+  const basePath = path.join(getPostsDirectory(subdirectory), slugOrFilename)
+  const filePaths = globSync([basePath + '.md', basePath + '.mdx', basePath])
+  const markdownWithMeta = fs.readFileSync(filePaths[0], 'utf-8')
   return matter(markdownWithMeta)
 }

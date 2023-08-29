@@ -10,7 +10,7 @@ export async function generateStaticParams() {
   console.log('filenames', filenames)
   const markdownRegex = /\.md(x)?$/
   const paths = filenames.map((filename) => ({
-    slug: [filename.replace(markdownRegex, '')],
+    slug: filename.replace(markdownRegex, '').split(path.sep),
   }))
 
   console.log('generated paths', paths)

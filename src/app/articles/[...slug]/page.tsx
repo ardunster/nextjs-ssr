@@ -25,7 +25,7 @@ export default async function ArticleBySlug({
 }) {
   const slug = path.join(...params.slug)
 
-  const article = await getArticle('articles', slug)
+  const article = getArticle('articles', params.slug)
 
   return (
     <>

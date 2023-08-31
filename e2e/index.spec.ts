@@ -1,10 +1,8 @@
 import { expect, test } from '@playwright/test'
 
-const baseUrl = 'http://localhost:3000'
-
 test.describe('main page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(baseUrl)
+    await page.goto('/')
   })
 
   test('has title', async ({ page }) => {
@@ -18,7 +16,7 @@ test.describe('main page', () => {
     const mainPageLink = navbar.getByRole('link', { name: 'Main Page' })
     await expect(mainPageLink).toBeVisible()
     await mainPageLink.click()
-    await expect(page).toHaveURL(baseUrl)
+    await expect(page).toHaveURL('/')
   })
 
   test('has a nav bar with link to articles', async ({ page }) => {
@@ -28,7 +26,7 @@ test.describe('main page', () => {
     const articleLink = navbar.getByRole('link', { name: 'Articles' })
     await expect(articleLink).toBeVisible()
     await articleLink.click()
-    await expect(page).toHaveURL(`${baseUrl}/articles`)
+    await expect(page).toHaveURL(`/articles`)
   })
 
   test('has a nav bar with link to tags', async ({ page }) => {
@@ -38,6 +36,6 @@ test.describe('main page', () => {
     const tagLink = navbar.getByRole('link', { name: 'tags' })
     await expect(tagLink).toBeVisible()
     await tagLink.click()
-    await expect(page).toHaveURL(`${baseUrl}/tags`)
+    await expect(page).toHaveURL(`/tags`)
   })
 })

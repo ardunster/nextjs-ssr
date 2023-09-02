@@ -23,3 +23,9 @@ test.describe('single article page', () => {
     await expect(page.getByAltText('thumbnail')).toBeVisible()
   })
 })
+
+test.only('non-existent article', async ({ page }) => {
+  await page.goto('/articles/no-article-with-this-slug')
+
+  await expect(page.getByText(/404/)).toBeVisible()
+})

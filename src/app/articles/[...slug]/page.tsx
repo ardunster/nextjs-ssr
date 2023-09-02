@@ -5,6 +5,8 @@ import SyntaxHighlighterWrapper from '@/app/_components/client/SyntaxHighlighter
 import Image from 'next/image'
 import path from 'path'
 
+export const dynamicParams = false
+
 export async function generateStaticParams() {
   const filenames = getFilenames('articles')
   console.log('filenames', filenames)

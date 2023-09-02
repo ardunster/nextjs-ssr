@@ -14,7 +14,7 @@ test.describe('tags page', () => {
 
     expect(await articleCards.count()).toBeGreaterThanOrEqual(1)
     await articleCards.first().click()
-    await expect(page).toHaveURL(/articles/)
+    await expect(page).toHaveURL(/articles\/.+/)
     await expect(page.locator('h1')).toBeVisible()
   })
 })

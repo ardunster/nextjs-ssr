@@ -24,8 +24,8 @@ test.describe('single article page', () => {
   })
 })
 
-test.only('non-existent article', async ({ page }) => {
+test('non-existent article shows entered slug', async ({ page }) => {
   await page.goto('/articles/no-article-with-this-slug')
 
-  await expect(page.getByText(/404/)).toBeVisible()
+  await expect(page.getByText(/no-article-with-this-slug/)).toBeVisible()
 })

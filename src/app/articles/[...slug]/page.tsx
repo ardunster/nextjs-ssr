@@ -25,13 +25,10 @@ export default async function ArticleBySlug({
 }: {
   params: { slug: string[] }
 }) {
-  const slug = path.join(...params.slug)
-
   const article = getArticle('articles', params.slug)
 
   return (
     <>
-      <aside>Breadcrumb: articles/{slug}</aside>
       <h1>{article.data.title}</h1>
       <em>Created: {article.data.date}</em>
       <br />

@@ -45,9 +45,12 @@ export function getFilenames(subdirectory: Subdirectory) {
 
 export interface ArticleData {
   date: string
+  modified?: string
   title: string
   description: string
   tags: string[]
+  thumbnailUrl: string
+  // This typing can safely be removed if not using any additional YAML tags.
   [key: string]: any
 }
 
@@ -55,6 +58,7 @@ export interface Article {
   data: ArticleData
   slug: string
   subdirectory: Subdirectory
+  content: string
 }
 
 function sortArticlesByDate(article1: Article, article2: Article) {
@@ -67,12 +71,7 @@ export function getArticles(subdirectory: Subdirectory): Article[] {
   const filenames = getFilenames(subdirectory)
   return filenames
     .map((filename) => {
-      const articleData = getArticle(subdirectory, [filename])
-      return {
-        data: articleData.data,
-        slug: filename.split('.')[0],
-        subdirectory: subdirectory,
-      } as Article
+      return getArticle(subdirectory, [filename])
     })
     .sort(sortArticlesByDate)
 }
@@ -80,9 +79,24 @@ export function getArticles(subdirectory: Subdirectory): Article[] {
 export function getArticle(
   subdirectory: Subdirectory,
   slugOrFilePath: string[],
-) {
+): Article {
   const basePath = path.join(getPostsDirectory(subdirectory), ...slugOrFilePath)
   const filePaths = globSync([basePath + '.md', basePath + '.mdx', basePath])
   const markdownWithMeta = fs.readFileSync(filePaths[0], 'utf-8')
-  return matter(markdownWithMeta)
+  const articleWithMatter = matter(markdownWithMeta)
+  const articleData: ArticleData = {
+    date: articleWithMatter.data.date,
+    modified: articleWithMatter.data.modified,
+    title: articleWithMatter.data.title,
+    description: articleWithMatter.data.description,
+    tags: articleWithMatter.data.tags,
+    thumbnailUrl: articleWithMatter.data.thumbnailUrl,
+    ...articleWithMatter.data,
+  }
+  return {
+    data: articleData,
+    content: articleWithMatter.content,
+    slug: path.join(...slugOrFilePath).split('.')[0],
+    subdirectory,
+  }
 }

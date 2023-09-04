@@ -1,19 +1,16 @@
 'use client'
 
-import { useSelectedLayoutSegments } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 export function Breadcrumbs() {
-  const segments = useSelectedLayoutSegments()
-
-  const breadcrumbs = segments.join('/')
+  const pathname = usePathname()
+  const displayBreadcrumbs = !(pathname === '/articles')
 
   return (
     <>
-      {breadcrumbs !== '' && (
+      {displayBreadcrumbs && (
         <>
-          <aside className={'breadcrumb'}>
-            Breadcrumb: articles/{breadcrumbs}
-          </aside>
+          <aside className={'breadcrumb'}>Breadcrumb: {pathname}</aside>
           <br />
         </>
       )}

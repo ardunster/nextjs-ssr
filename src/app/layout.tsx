@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  console.log('rendering root layout')
   return (
     <html lang="en">
       <body className={inter.className}>

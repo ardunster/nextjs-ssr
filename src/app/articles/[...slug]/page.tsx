@@ -4,8 +4,7 @@ import Button from '@/app/_components/client/Button'
 import SyntaxHighlighterWrapper from '@/app/_components/client/SyntaxHighlighterWrapper'
 import Image from 'next/image'
 import path from 'path'
-
-// export const dynamicParams = false
+import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
   const filenames = getFilenames('articles')
@@ -25,31 +24,35 @@ export default async function ArticleBySlug({
 }: {
   params: { slug: string[] }
 }) {
-  const article = getArticle('articles', params.slug)
+  try {
+    const article = getArticle('articles', params.slug)
 
-  return (
-    <>
-      <h1>{article.data.title}</h1>
-      <em>Created: {article.data.date}</em>
-      <br />
-      {article.data.modified != undefined && (
-        <>
-          <em>Modified: {article.data.modified}</em>
-          <br />
-        </>
-      )}
-      <br />
-      <Image
-        src={`/images/${article.data.thumbnailUrl}`}
-        alt="thumbnail"
-        width={640}
-        height={200}
-        style={{ objectFit: 'cover' }}
-      />
-      <MDXRemote
-        source={article.content}
-        components={{ Button, SyntaxHighlighter: SyntaxHighlighterWrapper }}
-      />
-    </>
-  )
+    return (
+      <>
+        <h1>{article.data.title}</h1>
+        <em>Created: {article.data.date}</em>
+        <br />
+        {article.data.modified != undefined && (
+          <>
+            <em>Modified: {article.data.modified}</em>
+            <br />
+          </>
+        )}
+        <br />
+        <Image
+          src={`/images/${article.data.thumbnailUrl}`}
+          alt="thumbnail"
+          width={640}
+          height={200}
+          style={{ objectFit: 'cover' }}
+        />
+        <MDXRemote
+          source={article.content}
+          components={{ Button, SyntaxHighlighter: SyntaxHighlighterWrapper }}
+        />
+      </>
+    )
+  } catch (e) {
+    notFound()
+  }
 }

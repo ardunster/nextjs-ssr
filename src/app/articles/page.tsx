@@ -8,7 +8,7 @@ export default function Articles() {
     <>
       <h1>Articles</h1>
       {articles.map((article, index) => (
-        <ArticleCard article={article} index={index} key={index} />
+        <ArticleCard article={article} key={index} />
       ))}
     </>
   )

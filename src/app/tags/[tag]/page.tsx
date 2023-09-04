@@ -12,7 +12,7 @@ export default function TagPage({ params }: { params: { tag: string } }) {
       <br />
       {articles.length === 0 && <strong>No articles found.</strong>}
       {articles.map((article, index) => (
-        <ArticleCard article={article} index={index} key={index} />
+        <ArticleCard article={article} key={index} />
       ))}
     </>
   )

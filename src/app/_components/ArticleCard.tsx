@@ -2,12 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Article } from '@/app/_utils/getArticles'
 
-export function ArticleCard(props: { article: Article; index: number }) {
-  const { article, index } = props
+export function ArticleCard(props: { article: Article }) {
+  const { article } = props
   return (
     <Link
       href={`/${article.subdirectory}/${article.slug}`}
-      key={index}
       data-testid={'article-card'}
     >
       <div

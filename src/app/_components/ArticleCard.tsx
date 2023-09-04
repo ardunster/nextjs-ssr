@@ -10,7 +10,6 @@ export function ArticleCard(props: { article: Article }) {
       data-testid={'article-card'}
     >
       <div
-        className="card mb-3 pointer"
         style={{
           border: 'gray solid 1px',
           margin: '1em',
@@ -20,10 +19,10 @@ export function ArticleCard(props: { article: Article }) {
         }}
       >
         <div style={{ flex: 'auto' }}>
-          <h3 className="card-title">{article.data.title}</h3>
-          <p className="card-text">{article.data.description}</p>
-          <p className="card-text">
-            <small className="text-muted">{article.data.date}</small>
+          <h3>{article.data.title}</h3>
+          <p>{article.data.description}</p>
+          <p>
+            <small>{article.data.date}</small>
           </p>
           <p>
             <small>

@@ -1,6 +1,6 @@
 import { NavbarTab } from '@/app/_components/client/NavbarTab'
 
-function Navbar() {
+export default function Navbar() {
   return (
     <nav className={'navbar'}>
       <NavbarTab route={'/'} isEmphasizedRoute={true}>
@@ -15,5 +15,3 @@ function Navbar() {
     </nav>
   )
 }
-
-export default Navbar

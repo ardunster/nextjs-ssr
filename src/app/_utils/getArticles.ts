@@ -44,6 +44,10 @@ export function getFilenames(subdirectory: Subdirectory) {
 }
 
 export interface ArticleData {
+  date: string
+  title: string
+  description: string
+  tags: string[]
   [key: string]: any
 }
 
@@ -68,7 +72,7 @@ export function getArticles(subdirectory: Subdirectory): Article[] {
         data: articleData.data,
         slug: filename.split('.')[0],
         subdirectory: subdirectory,
-      }
+      } as Article
     })
     .sort(sortArticlesByDate)
 }

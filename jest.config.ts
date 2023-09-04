@@ -12,10 +12,7 @@ const config: Config = {
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   testEnvironment: 'jest-environment-jsdom',
   // transformIgnorePatterns: ['node_modules/(?!(.*(mdx).*)/?)'],
-  moduleNameMapper: {
-    // prettier-ignore
-    '^[./a-zA-Z0-9$_-]+\.md(x)?$': '<rootDir>/src/app/_testutils/GlobalMarkdownImport.tsx',
-  },
+  testPathIgnorePatterns: ['<rootDir>/e2e'],
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

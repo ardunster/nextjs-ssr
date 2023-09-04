@@ -31,10 +31,10 @@ export function ArticleCard(props: { article: Article; index: number }) {
               Tags:{' '}
               {article.data.tags.map((tag: string, index: number) => {
                 return (
-                  <>
+                  <span key={index}>
                     {tag}
                     {index !== article.data.tags.length - 1 && ', '}
-                  </>
+                  </span>
                 )
               })}
             </small>

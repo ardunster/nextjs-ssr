@@ -19,12 +19,24 @@ describe('aggregateTags', () => {
         subdirectory: 'articles',
         data: {
           tags: ['yes', 'no', 'maybe'],
+          date: 'yesterday',
+          title: 'steve',
+          description: 'lots of steveing',
+          thumbnailUrl: 'steve.png',
         },
+        content: 'steve',
       },
       {
         slug: 'antwerp',
         subdirectory: 'articles',
-        data: { tags: ['maybe', 'I dunno', 'can you repeat the question?'] },
+        data: {
+          tags: ['maybe', 'I dunno', 'can you repeat the question?'],
+          date: 'tomorrow',
+          title: 'antwerp',
+          description: 'its a city',
+          thumbnailUrl: 'antwerp.png',
+        },
+        content: 'antwerp',
       },
     ]
 
@@ -44,22 +56,48 @@ describe('aggregateTags', () => {
         subdirectory: 'articles',
         data: {
           tags: ['yes', 'no', 'maybe'],
+          date: 'yesterday',
+          title: 'steve',
+          description: 'lots of steveing',
+          thumbnailUrl: 'steve.png',
         },
+        content: 'steve',
       },
       {
         slug: 'antwerp',
         subdirectory: 'articles',
-        data: { tags: ['maybe', 'yes'] },
+        data: {
+          tags: ['maybe', 'yes'],
+          date: 'tomorrow',
+          title: 'antwerp',
+          description: 'its a city',
+          thumbnailUrl: 'antwerp.png',
+        },
+        content: 'antwerp',
       },
       {
         slug: 'some-article',
         subdirectory: 'articles',
-        data: { tags: ['maybe', 'no'] },
+        data: {
+          tags: ['maybe', 'no'],
+          date: 'last week',
+          title: 'some article',
+          description: 'an article about stuff',
+          thumbnailUrl: 'article.png',
+        },
+        content: 'lots of content all about stuff',
       },
       {
         slug: 'some-other-article',
         subdirectory: 'articles',
-        data: { tags: ['maybe', '74', 'no'] },
+        data: {
+          tags: ['maybe', '74', 'no'],
+          date: 'seven years ago',
+          title: 'some other article 74',
+          description: '74 is a magic number',
+          thumbnailUrl: '74.png',
+        },
+        content: '74',
       },
     ]
 
@@ -133,22 +171,48 @@ describe('filterArticlesByTag', () => {
       subdirectory: 'articles',
       data: {
         tags: ['yes', 'no', 'maybe'],
+        date: 'yesterday',
+        title: 'steve',
+        description: 'lots of steveing',
+        thumbnailUrl: 'steve.png',
       },
+      content: 'steve',
     },
     {
       slug: 'antwerp',
       subdirectory: 'articles',
-      data: { tags: ['maybe', 'yes'] },
+      data: {
+        tags: ['maybe', 'yes'],
+        date: 'tomorrow',
+        title: 'antwerp',
+        description: 'its a city',
+        thumbnailUrl: 'antwerp.png',
+      },
+      content: 'antwerp',
     },
     {
       slug: 'some-article',
       subdirectory: 'articles',
-      data: { tags: ['maybe', 'no'] },
+      data: {
+        tags: ['maybe', 'no'],
+        date: 'last week',
+        title: 'some article',
+        description: 'an article about stuff',
+        thumbnailUrl: 'article.png',
+      },
+      content: 'lots of content all about stuff',
     },
     {
       slug: 'some-other-article',
       subdirectory: 'articles',
-      data: { tags: ['maybe', '74', 'no'] },
+      data: {
+        tags: ['maybe', '74', 'no'],
+        date: 'seven years ago',
+        title: 'some other article 74',
+        description: '74 is a magic number',
+        thumbnailUrl: '74.png',
+      },
+      content: '74',
     },
   ]
 

@@ -36,9 +36,13 @@ Modify or add markdown files in the `src/assets/articles` directory, and refresh
 At the top of each file is a YAML based frontmatter section that requires these fields:
 
 `title`: The article title that will display in the list of articles and at the top of the article page.
+
 `date`: Publishing date of the article. Enclose in quotes to prevent automatic parsing into a date object.
+
 `description`: Article description or summary that appears in the list of articles.
+
 `thumbnailUrl`: Address relative to the `public/images/` directory of the thumbnail image.
+
 `tags`: Array of strings for article tags, automatically counted and displayed on the hostname/tags page.
 
 ## Running Tests

@@ -31,7 +31,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Adding Blog Content
 
-Modify or add markdown files in the `src/assets/articles` directory, and refresh to see the results in app!  At the top of each file is a YAML based frontmatter section that requires these fields:
+Modify or add markdown files in the `src/assets/articles` directory, and refresh to see the results in app! The file name and path relative to `articles/` will be the post slug in the `hostname/articles/slug` path. Supports nested subdirectories, for example for writing articles by year.
+
+At the top of each file is a YAML based frontmatter section that requires these fields:
 
 `title`: The article title that will display in the list of articles and at the top of the article page.
 `date`: Publishing date of the article. Enclose in quotes to prevent automatic parsing into a date object.

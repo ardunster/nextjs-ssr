@@ -8,13 +8,13 @@ import { notFound } from 'next/navigation'
 
 export async function generateStaticParams() {
   const filenames = getFilenames('articles')
-  console.log('filenames', filenames)
+  // console.log('filenames', filenames)
   const markdownRegex = /\.md(x)?$/
   const paths = filenames.map((filename) => ({
     slug: filename.replace(markdownRegex, '').split(path.sep),
   }))
 
-  console.log('generated paths', paths)
+  // console.log('generated paths', paths)
 
   return paths
 }

@@ -56,3 +56,7 @@ Playwright tests need the server running locally in either dev or production mod
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Dependabot
+
+This template repository is configured to use dependabot by default, to facilitate maintaining an up-to-date template for users. If you would like to disable this, be sure to remove the dependabot configuration file from `.github/dependabot.yml`.

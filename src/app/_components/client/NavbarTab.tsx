@@ -3,6 +3,7 @@
 import { ReactNode } from 'react'
 import Link from 'next/link'
 import { useSelectedLayoutSegment } from 'next/navigation'
+import styles from '../Navbar.module.scss'
 
 export function NavbarTab(props: {
   route: string
@@ -17,14 +18,16 @@ export function NavbarTab(props: {
     (routeIsRoot && segment == null) ||
     (segment != null && props.route.includes(segment))
   ) {
-    selectedClass = 'selected-route'
+    selectedClass = styles.selectedRoute
   }
 
-  const emphasizedClass = props.isEmphasizedRoute ? 'emphasized-route' : ''
+  const emphasizedClass = props.isEmphasizedRoute ? styles.emphasizedRoute : ''
+
+  const className = `${selectedClass} ${emphasizedClass}`.trim()
 
   return (
-    <Link href={props.route} className={selectedClass}>
-      <h2 className={emphasizedClass}>{props.children}</h2>
+    <Link href={props.route} className={className}>
+      <h2>{props.children}</h2>
     </Link>
   )
 }

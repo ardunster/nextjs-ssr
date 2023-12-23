@@ -4,7 +4,7 @@
   border-bottom: white solid 2px;
   margin-bottom: 1em;
 
-  & a {
+  a {
     flex: auto;
     height: 100%;
     margin-block: auto;
@@ -12,19 +12,21 @@
     padding-inline: 1em;
   }
 
-  & h2 {
+  h2 {
     font-size: 1.17em;
     margin-block-start: 1em;
     margin-block-end: 1em;
   }
 
-  & h2.emphasized-route {
-    font-size: 1.5em;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
+  .emphasizedRoute {
+    h2 {
+      font-size: 1.5em;
+      margin-block-start: 0.83em;
+      margin-block-end: 0.83em;
+    }
   }
 
-  & .selected-route {
+  .selectedRoute {
     box-shadow: inset 0 0 2em 1em rgba(180, 195, 247, 0.2);
   }
 }

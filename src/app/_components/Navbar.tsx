@@ -1,5 +1,5 @@
 import { NavbarTab } from '@/app/_components/client/NavbarTab'
-import styles from './Navbar.module.css'
+import styles from './Navbar.module.scss'
 
 export default function Navbar() {
   return (

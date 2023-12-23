@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ReactNode } from 'react'
 import Navbar from '@/app/_components/Navbar'
+import styles from '@/app/layout.module.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +18,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        {children}
+        <main className={styles.main}>{children}</main>
       </body>
     </html>
   )

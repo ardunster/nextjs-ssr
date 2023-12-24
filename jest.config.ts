@@ -11,7 +11,6 @@ const config: Config = {
   // Add more setup options before each test is run
   setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
   testEnvironment: 'jest-environment-jsdom',
-  // transformIgnorePatterns: ['node_modules/(?!(.*(mdx).*)/?)'],
   testPathIgnorePatterns: ['<rootDir>/e2e'],
 }
 

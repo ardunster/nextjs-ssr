@@ -17,6 +17,30 @@ describe('getFilenames', () => {
   test('exists', () => {
     expect(getFilenames).toBeDefined()
   })
+
+  // This test will need to be updated to reflect actual files in your content directory.
+  // However, if you stick with the arrayContaining syntax, you only need to
+  // list a few initial files once to ensure the code is working in general.
+  test('gets filenames in articles directory', () => {
+    const result = getFilenames('articles')
+    expect(result).toEqual(
+      expect.arrayContaining([
+        'article2.md',
+        'article1.mdx',
+        '2023/newest-article.md',
+        '2023/draft-test-article.md',
+        '2023/nesty/article1-copy.md',
+      ]),
+    )
+  })
+
+  // This test is only useful as long as it lists a file that exists,
+  // but isn't in the articles directory. If you remove test.md from your
+  // repository, this test will always pass even if the code gets broken.
+  test('does not get filenames outside articles directory', () => {
+    const result = getFilenames('articles')
+    expect(result).not.toContain('test.md')
+  })
 })
 
 describe('getArticles', () => {

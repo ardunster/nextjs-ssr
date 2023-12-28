@@ -6,6 +6,7 @@ import { globSync } from 'glob'
 /** Available post paths in file system and navigation. Add additional post paths here. */
 export type Subdirectory = 'articles'
 
+/** Categories available to the filterArticlesByCategory function. */
 export type ArticleCategory = 'category_1' | 'category_2'
 
 export interface ArticleData {
@@ -78,6 +79,9 @@ export function getArticles(subdirectory: Subdirectory): Article[] {
     .map((filename) => {
       return getArticle(subdirectory, [filename])
     })
+    .filter((article) => {
+      return article.data.status !== 'draft'
+    })
     .sort(sortArticlesByDate)
 }
 
@@ -96,8 +100,13 @@ export function getArticle(
     description: articleWithMatter.data.description,
     tags: articleWithMatter.data.tags,
     thumbnailUrl: articleWithMatter.data.thumbnailUrl,
+    // You can default these data imports to ensure they are always defined, if
+    // you're not sure whether you can guarantee they are in all the content files.
     category: articleWithMatter.data.category ?? 'category_1',
     status: articleWithMatter.data.status ?? 'published',
+    // This line can be removed if you are only using explicit data fields,
+    // for example if you remove the [key: string]: any typing from the
+    // ArticleData type.
     ...articleWithMatter.data,
   }
   return {
@@ -106,4 +115,13 @@ export function getArticle(
     slug: path.join(...slugOrFilePath).split('.')[0],
     subdirectory,
   }
+}
+
+export function filterArticlesByCategory(
+  article: Article[],
+  category: ArticleCategory,
+): Article[] {
+  return article.filter((article) => {
+    return article.data.category === category
+  })
 }

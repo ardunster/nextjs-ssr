@@ -40,7 +40,7 @@ export const mockArticleBermuda: Article = {
     tags: ['maybe', 'yes'],
     thumbnailUrl: '3_sided_polygon.png',
     status: 'published',
-    category: 'category_1',
+    category: 'category_2',
   },
   content: 'bermuda triangle math',
 }
@@ -70,7 +70,7 @@ export const mockArticleSomeOther: Article = {
     tags: ['maybe', '74', 'no'],
     thumbnailUrl: '74.png',
     status: 'published',
-    category: 'category_1',
+    category: 'category_2',
   },
   content: '74',
 }

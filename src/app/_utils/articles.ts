@@ -3,7 +3,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import { globSync } from 'glob'
 
-/** Available post paths in file system and navigation. Add additional post paths here. */
+/** Available article paths in file system and navigation. Add additional article paths here. */
 export type Subdirectory = 'articles'
 
 /** Categories available to the filterArticlesByCategory function. */
@@ -60,11 +60,14 @@ function recurseFilenamesInSubdirectory(
 }
 
 export function getFilenames(subdirectory: Subdirectory) {
-  const postsDirectory = getArticlesDirectory(subdirectory)
-  return globSync([postsDirectory + '/**/*.md', postsDirectory + '/**/*.mdx'], {
-    absolute: false,
-    cwd: postsDirectory,
-  })
+  const articlesDirectory = getArticlesDirectory(subdirectory)
+  return globSync(
+    [articlesDirectory + '/**/*.md', articlesDirectory + '/**/*.mdx'],
+    {
+      absolute: false,
+      cwd: articlesDirectory,
+    },
+  )
 }
 
 function sortArticlesByDate(article1: Article, article2: Article) {

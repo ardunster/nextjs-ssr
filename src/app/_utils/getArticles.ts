@@ -6,6 +6,29 @@ import { globSync } from 'glob'
 /** Available post paths in file system and navigation. Add additional post paths here. */
 export type Subdirectory = 'articles'
 
+export type ArticleCategory = 'category_1' | 'category_2'
+
+export interface ArticleData {
+  publishedDate: string
+  modifiedDate?: string
+  title: string
+  description: string
+  tags: string[]
+  thumbnailUrl: string
+  thumbnailSourceUrl?: string
+  status: 'published' | 'draft'
+  category: ArticleCategory
+  // This typing can safely be removed if not using any additional YAML tags.
+  [key: string]: any
+}
+
+export interface Article {
+  data: ArticleData
+  slug: string
+  subdirectory: Subdirectory
+  content: string
+}
+
 function getPostsDirectory(subdirectory: Subdirectory) {
   const root = process.cwd()
   return path.join(root, `src/assets/${subdirectory}`)
@@ -43,27 +66,9 @@ export function getFilenames(subdirectory: Subdirectory) {
   })
 }
 
-export interface ArticleData {
-  date: string
-  modified?: string
-  title: string
-  description: string
-  tags: string[]
-  thumbnailUrl: string
-  // This typing can safely be removed if not using any additional YAML tags.
-  [key: string]: any
-}
-
-export interface Article {
-  data: ArticleData
-  slug: string
-  subdirectory: Subdirectory
-  content: string
-}
-
 function sortArticlesByDate(article1: Article, article2: Article) {
-  const date1 = new Date(article1.data.date).getTime()
-  const date2 = new Date(article2.data.date).getTime()
+  const date1 = new Date(article1.data.publishedDate).getTime()
+  const date2 = new Date(article2.data.publishedDate).getTime()
   return date2 - date1
 }
 
@@ -85,12 +90,14 @@ export function getArticle(
   const markdownWithMeta = fs.readFileSync(filePaths[0], 'utf-8')
   const articleWithMatter = matter(markdownWithMeta)
   const articleData: ArticleData = {
-    date: articleWithMatter.data.date,
-    modified: articleWithMatter.data.modified,
+    publishedDate: articleWithMatter.data.date,
+    modifiedDate: articleWithMatter.data.modified,
     title: articleWithMatter.data.title,
     description: articleWithMatter.data.description,
     tags: articleWithMatter.data.tags,
     thumbnailUrl: articleWithMatter.data.thumbnailUrl,
+    category: articleWithMatter.data.category ?? 'category_1',
+    status: articleWithMatter.data.status ?? 'published',
     ...articleWithMatter.data,
   }
   return {

@@ -19,7 +19,7 @@ describe('aggregateTags', () => {
         subdirectory: 'articles',
         data: {
           tags: ['yes', 'no', 'maybe'],
-          date: 'yesterday',
+          publishedDate: 'yesterday',
           title: 'steve',
           description: 'lots of steveing',
           thumbnailUrl: 'steve.png',
@@ -31,7 +31,7 @@ describe('aggregateTags', () => {
         subdirectory: 'articles',
         data: {
           tags: ['maybe', 'I dunno', 'can you repeat the question?'],
-          date: 'tomorrow',
+          publishedDate: 'tomorrow',
           title: 'antwerp',
           description: 'its a city',
           thumbnailUrl: 'antwerp.png',
@@ -56,7 +56,7 @@ describe('aggregateTags', () => {
         subdirectory: 'articles',
         data: {
           tags: ['yes', 'no', 'maybe'],
-          date: 'yesterday',
+          publishedDate: 'yesterday',
           title: 'steve',
           description: 'lots of steveing',
           thumbnailUrl: 'steve.png',
@@ -68,7 +68,7 @@ describe('aggregateTags', () => {
         subdirectory: 'articles',
         data: {
           tags: ['maybe', 'yes'],
-          date: 'tomorrow',
+          publishedDate: 'tomorrow',
           title: 'antwerp',
           description: 'its a city',
           thumbnailUrl: 'antwerp.png',
@@ -80,7 +80,7 @@ describe('aggregateTags', () => {
         subdirectory: 'articles',
         data: {
           tags: ['maybe', 'no'],
-          date: 'last week',
+          publishedDate: 'last week',
           title: 'some article',
           description: 'an article about stuff',
           thumbnailUrl: 'article.png',
@@ -92,7 +92,7 @@ describe('aggregateTags', () => {
         subdirectory: 'articles',
         data: {
           tags: ['maybe', '74', 'no'],
-          date: 'seven years ago',
+          publishedDate: 'seven years ago',
           title: 'some other article 74',
           description: '74 is a magic number',
           thumbnailUrl: '74.png',
@@ -171,7 +171,7 @@ describe('filterArticlesByTag', () => {
       subdirectory: 'articles',
       data: {
         tags: ['yes', 'no', 'maybe'],
-        date: 'yesterday',
+        publishedDate: 'yesterday',
         title: 'steve',
         description: 'lots of steveing',
         thumbnailUrl: 'steve.png',
@@ -183,7 +183,7 @@ describe('filterArticlesByTag', () => {
       subdirectory: 'articles',
       data: {
         tags: ['maybe', 'yes'],
-        date: 'tomorrow',
+        publishedDate: 'tomorrow',
         title: 'antwerp',
         description: 'its a city',
         thumbnailUrl: 'antwerp.png',
@@ -195,7 +195,7 @@ describe('filterArticlesByTag', () => {
       subdirectory: 'articles',
       data: {
         tags: ['maybe', 'no'],
-        date: 'last week',
+        publishedDate: 'last week',
         title: 'some article',
         description: 'an article about stuff',
         thumbnailUrl: 'article.png',
@@ -207,7 +207,7 @@ describe('filterArticlesByTag', () => {
       subdirectory: 'articles',
       data: {
         tags: ['maybe', '74', 'no'],
-        date: 'seven years ago',
+        publishedDate: 'seven years ago',
         title: 'some other article 74',
         description: '74 is a magic number',
         thumbnailUrl: '74.png',

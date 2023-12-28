@@ -30,11 +30,11 @@ export default async function ArticleBySlug({
     return (
       <>
         <h1>{article.data.title}</h1>
-        <em>Created: {article.data.date}</em>
+        <em>Created: {article.data.publishedDate}</em>
         <br />
-        {article.data.modified != undefined && (
+        {article.data.modifiedDate != undefined && (
           <>
-            <em>Modified: {article.data.modified}</em>
+            <em>Modified: {article.data.modifiedDate}</em>
             <br />
           </>
         )}

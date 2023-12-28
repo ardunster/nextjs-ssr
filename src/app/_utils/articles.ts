@@ -30,7 +30,7 @@ export interface Article {
   content: string
 }
 
-function getPostsDirectory(subdirectory: Subdirectory) {
+function getArticlesDirectory(subdirectory: Subdirectory) {
   const root = process.cwd()
   return path.join(root, `src/content/${subdirectory}`)
 }
@@ -60,7 +60,7 @@ function recurseFilenamesInSubdirectory(
 }
 
 export function getFilenames(subdirectory: Subdirectory) {
-  const postsDirectory = getPostsDirectory(subdirectory)
+  const postsDirectory = getArticlesDirectory(subdirectory)
   return globSync([postsDirectory + '/**/*.md', postsDirectory + '/**/*.mdx'], {
     absolute: false,
     cwd: postsDirectory,
@@ -89,7 +89,10 @@ export function getArticle(
   subdirectory: Subdirectory,
   slugOrFilePath: string[],
 ): Article {
-  const basePath = path.join(getPostsDirectory(subdirectory), ...slugOrFilePath)
+  const basePath = path.join(
+    getArticlesDirectory(subdirectory),
+    ...slugOrFilePath,
+  )
   const filePaths = globSync([basePath + '.md', basePath + '.mdx', basePath])
   const markdownWithMeta = fs.readFileSync(filePaths[0], 'utf-8')
   const articleWithMatter = matter(markdownWithMeta)

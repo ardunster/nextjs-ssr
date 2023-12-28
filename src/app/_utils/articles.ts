@@ -32,7 +32,7 @@ export interface Article {
 
 function getPostsDirectory(subdirectory: Subdirectory) {
   const root = process.cwd()
-  return path.join(root, `src/assets/${subdirectory}`)
+  return path.join(root, `src/content/${subdirectory}`)
 }
 
 function recurseFilenamesInSubdirectory(

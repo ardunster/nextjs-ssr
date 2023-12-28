@@ -6,6 +6,13 @@ import {
   updateTagCounts,
 } from '@/app/_utils/tags'
 import { Article } from '@/app/_utils/articles'
+import {
+  mockArticleAntwerp,
+  mockArticleBermuda,
+  mockArticleSome,
+  mockArticleSomeOther,
+  mockArticleSteve,
+} from '@/app/_testutils/testArticles'
 
 describe('aggregateTags', () => {
   test('exists', () => {
@@ -13,32 +20,7 @@ describe('aggregateTags', () => {
   })
 
   test('returns array of tags with counts', () => {
-    const articles: Article[] = [
-      {
-        slug: 'steve',
-        subdirectory: 'articles',
-        data: {
-          tags: ['yes', 'no', 'maybe'],
-          publishedDate: 'yesterday',
-          title: 'steve',
-          description: 'lots of steveing',
-          thumbnailUrl: 'steve.png',
-        },
-        content: 'steve',
-      },
-      {
-        slug: 'antwerp',
-        subdirectory: 'articles',
-        data: {
-          tags: ['maybe', 'I dunno', 'can you repeat the question?'],
-          publishedDate: 'tomorrow',
-          title: 'antwerp',
-          description: 'its a city',
-          thumbnailUrl: 'antwerp.png',
-        },
-        content: 'antwerp',
-      },
-    ]
+    const articles: Article[] = [mockArticleSteve, mockArticleAntwerp]
 
     expect(aggregateTags(articles)).toEqual([
       { tag: 'maybe', count: 2 },
@@ -51,54 +33,10 @@ describe('aggregateTags', () => {
 
   test('sorts results with highest number of occurrences first', () => {
     const articles: Article[] = [
-      {
-        slug: 'steve',
-        subdirectory: 'articles',
-        data: {
-          tags: ['yes', 'no', 'maybe'],
-          publishedDate: 'yesterday',
-          title: 'steve',
-          description: 'lots of steveing',
-          thumbnailUrl: 'steve.png',
-        },
-        content: 'steve',
-      },
-      {
-        slug: 'antwerp',
-        subdirectory: 'articles',
-        data: {
-          tags: ['maybe', 'yes'],
-          publishedDate: 'tomorrow',
-          title: 'antwerp',
-          description: 'its a city',
-          thumbnailUrl: 'antwerp.png',
-        },
-        content: 'antwerp',
-      },
-      {
-        slug: 'some-article',
-        subdirectory: 'articles',
-        data: {
-          tags: ['maybe', 'no'],
-          publishedDate: 'last week',
-          title: 'some article',
-          description: 'an article about stuff',
-          thumbnailUrl: 'article.png',
-        },
-        content: 'lots of content all about stuff',
-      },
-      {
-        slug: 'some-other-article',
-        subdirectory: 'articles',
-        data: {
-          tags: ['maybe', '74', 'no'],
-          publishedDate: 'seven years ago',
-          title: 'some other article 74',
-          description: '74 is a magic number',
-          thumbnailUrl: '74.png',
-        },
-        content: '74',
-      },
+      mockArticleSteve,
+      mockArticleBermuda,
+      mockArticleSome,
+      mockArticleSomeOther,
     ]
 
     expect(aggregateTags(articles)).toEqual([
@@ -166,54 +104,10 @@ describe('sortTagCounts', () => {
 
 describe('filterArticlesByTag', () => {
   const articles: Article[] = [
-    {
-      slug: 'steve',
-      subdirectory: 'articles',
-      data: {
-        tags: ['yes', 'no', 'maybe'],
-        publishedDate: 'yesterday',
-        title: 'steve',
-        description: 'lots of steveing',
-        thumbnailUrl: 'steve.png',
-      },
-      content: 'steve',
-    },
-    {
-      slug: 'antwerp',
-      subdirectory: 'articles',
-      data: {
-        tags: ['maybe', 'yes'],
-        publishedDate: 'tomorrow',
-        title: 'antwerp',
-        description: 'its a city',
-        thumbnailUrl: 'antwerp.png',
-      },
-      content: 'antwerp',
-    },
-    {
-      slug: 'some-article',
-      subdirectory: 'articles',
-      data: {
-        tags: ['maybe', 'no'],
-        publishedDate: 'last week',
-        title: 'some article',
-        description: 'an article about stuff',
-        thumbnailUrl: 'article.png',
-      },
-      content: 'lots of content all about stuff',
-    },
-    {
-      slug: 'some-other-article',
-      subdirectory: 'articles',
-      data: {
-        tags: ['maybe', '74', 'no'],
-        publishedDate: 'seven years ago',
-        title: 'some other article 74',
-        description: '74 is a magic number',
-        thumbnailUrl: '74.png',
-      },
-      content: '74',
-    },
+    mockArticleSteve,
+    mockArticleBermuda,
+    mockArticleSome,
+    mockArticleSomeOther,
   ]
 
   test('exists', () => {

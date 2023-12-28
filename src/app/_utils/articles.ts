@@ -10,8 +10,8 @@ export type Subdirectory = 'articles'
 export type ArticleCategory = 'category_1' | 'category_2'
 
 export interface ArticleData {
-  publishedDate: string
-  modifiedDate?: string
+  publishedDate: Date
+  modifiedDate?: Date
   title: string
   description: string
   tags: string[]
@@ -94,8 +94,10 @@ export function getArticle(
   const markdownWithMeta = fs.readFileSync(filePaths[0], 'utf-8')
   const articleWithMatter = matter(markdownWithMeta)
   const articleData: ArticleData = {
-    publishedDate: articleWithMatter.data.date,
-    modifiedDate: articleWithMatter.data.modified,
+    publishedDate: new Date(articleWithMatter.data.date),
+    modifiedDate: articleWithMatter.data.modified
+      ? new Date(articleWithMatter.data.modified)
+      : undefined,
     title: articleWithMatter.data.title,
     description: articleWithMatter.data.description,
     tags: articleWithMatter.data.tags,

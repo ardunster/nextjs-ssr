@@ -22,7 +22,7 @@ export function ArticleCard(props: { article: Article }) {
           <h3>{article.data.title}</h3>
           <p>{article.data.description}</p>
           <p>
-            <small>{article.data.publishedDate}</small>
+            <small>{article.data.publishedDate.toLocaleDateString()}</small>
           </p>
           <p>
             <small>

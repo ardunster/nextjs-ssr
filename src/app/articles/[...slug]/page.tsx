@@ -1,4 +1,4 @@
-import { getArticle, getFilenames } from '@/app/_utils/getArticles'
+import { getArticle, getFilenames } from '@/app/_utils/articles'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Button from '@/app/_components/client/Button'
 import SyntaxHighlighterWrapper from '@/app/_components/client/SyntaxHighlighterWrapper'

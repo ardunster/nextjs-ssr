@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Article } from '@/app/_utils/getArticles'
+import { Article } from '@/app/_utils/articles'
 
 export function ArticleCard(props: { article: Article }) {
   const { article } = props

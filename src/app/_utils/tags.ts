@@ -1,4 +1,4 @@
-import { Article } from '@/app/_utils/getArticles'
+import { Article } from '@/app/_utils/articles'
 
 export type TagCount = { tag: string; count: number }
 

@@ -1,4 +1,4 @@
-import { getArticles } from '@/app/_utils/getArticles'
+import { getArticles } from '@/app/_utils/articles'
 import { ArticleCard } from '@/app/_components/ArticleCard'
 
 export default function Articles() {

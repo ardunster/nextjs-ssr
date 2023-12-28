@@ -5,7 +5,7 @@ import {
   TagCount,
   updateTagCounts,
 } from '@/app/_utils/tags'
-import { Article } from '@/app/_utils/getArticles'
+import { Article } from '@/app/_utils/articles'
 
 describe('aggregateTags', () => {
   test('exists', () => {

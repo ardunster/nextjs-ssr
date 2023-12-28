@@ -1,4 +1,4 @@
-import { getArticles } from '@/app/_utils/getArticles'
+import { getArticles } from '@/app/_utils/articles'
 import { aggregateTags } from '@/app/_utils/tags'
 import { TagCard } from '@/app/_components/TagCard'
 

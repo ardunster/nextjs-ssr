@@ -44,7 +44,7 @@ describe('getArticles', () => {
       expect.arrayContaining([
         expect.objectContaining({
           data: expect.objectContaining({
-            title: 'Draft Test',
+            title: "Some Draft article that isn't finished",
           }),
         }),
       ]),

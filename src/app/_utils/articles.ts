@@ -71,8 +71,8 @@ export function getFilenames(subdirectory: Subdirectory) {
 }
 
 function sortArticlesByDate(article1: Article, article2: Article) {
-  const date1 = new Date(article1.data.publishedDate).getTime()
-  const date2 = new Date(article2.data.publishedDate).getTime()
+  const date1 = article1.data.publishedDate.getTime()
+  const date2 = article2.data.publishedDate.getTime()
   return date2 - date1
 }
 

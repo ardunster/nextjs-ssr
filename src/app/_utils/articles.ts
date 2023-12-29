@@ -98,28 +98,26 @@ export function getArticle(
   )
   const filePaths = globSync([basePath + '.md', basePath + '.mdx', basePath])
   const markdownWithMeta = fs.readFileSync(filePaths[0], 'utf-8')
-  const articleWithMatter = matter(markdownWithMeta)
+  const { data, content } = matter(markdownWithMeta)
   const articleData: ArticleData = {
-    publishedDate: new Date(articleWithMatter.data.date),
-    modifiedDate: articleWithMatter.data.modified
-      ? new Date(articleWithMatter.data.modified)
-      : undefined,
-    title: articleWithMatter.data.title,
-    description: articleWithMatter.data.description,
-    tags: articleWithMatter.data.tags,
-    thumbnailUrl: articleWithMatter.data.thumbnailUrl,
+    publishedDate: new Date(data.date),
+    modifiedDate: data.modified ? new Date(data.modified) : undefined,
+    title: data.title,
+    description: data.description,
+    tags: data.tags,
+    thumbnailUrl: data.thumbnailUrl,
     // You can default these data imports to ensure they are always defined, if
     // you're not sure whether you can guarantee they are in all the content files.
-    category: articleWithMatter.data.category ?? 'category_1',
-    status: articleWithMatter.data.status ?? 'published',
+    category: data.category ?? 'category_1',
+    status: data.status ?? 'published',
     // This line can be removed if you are only using explicit data fields,
     // for example if you remove the [key: string]: any typing from the
     // ArticleData type.
-    ...articleWithMatter.data,
+    ...data,
   }
   return {
     data: articleData,
-    content: articleWithMatter.content,
+    content: content,
     slug: path.join(...slugOrFilePath).split('.')[0],
     subdirectory,
   }

@@ -7,8 +7,8 @@ export default function Articles() {
   return (
     <>
       <h1>Articles</h1>
-      {articles.map((article, index) => (
-        <ArticleCard article={article} key={index} />
+      {articles.map((article) => (
+        <ArticleCard article={article} key={article.slug} />
       ))}
     </>
   )

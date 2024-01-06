@@ -10,8 +10,8 @@ export default function Tags() {
   return (
     <>
       <h1>Tags</h1>
-      {tagCounts.map((tagCount, index) => (
-        <TagCard tagCount={tagCount} key={index} />
+      {tagCounts.map((tagCount) => (
+        <TagCard tagCount={tagCount} key={tagCount.tag} />
       ))}
     </>
   )
